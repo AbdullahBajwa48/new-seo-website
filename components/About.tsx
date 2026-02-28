@@ -39,14 +39,12 @@ const paragraphs = [
   `We started Khalis Marketing to do things differently.`,
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.12, duration: 0.6, ease: "easeOut" },
-  }),
-};
+const fadeUp = (i: number) => ({
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { delay: i * 0.12, duration: 0.6, ease: "easeOut" as const },
+});
 
 export default function AboutSection() {
   return (
@@ -94,11 +92,7 @@ export default function AboutSection() {
             {paragraphs.map((p, i) => (
               <motion.p
                 key={i}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                {...fadeUp(i)}
                 className={`text-gray-600 leading-relaxed ${
                   i === 2
                     ? "text-xl font-bold text-gray-900"
@@ -111,11 +105,7 @@ export default function AboutSection() {
 
             {/* Pull quote */}
             <motion.blockquote
-              custom={3}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              {...fadeUp(3)}
               className="relative pl-6 mt-2"
             >
               <div
@@ -129,11 +119,7 @@ export default function AboutSection() {
 
             {/* CTA */}
             <motion.div
-              custom={4}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              {...fadeUp(4)}
               className="pt-2"
             >
               <Link
