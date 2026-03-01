@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-
+//added
 const navLinks = [
   { label: "About", href: "/about", dropdown: null, twoCol: false },
   {
